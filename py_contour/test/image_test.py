@@ -3,7 +3,7 @@
 # simple test code for contour
 
 import numpy as np
-import contour
+import py_contour
 import py_gd # so we can see the results visually
 
 M, N = 1000, 800 #(image size)
@@ -19,7 +19,7 @@ z = np.cos(x) + np.sin(y)
 levels = np.linspace(z.min(),z.max(), 12)
 levels = levels[1:-1]
 print levels
-segs = contour.contour( z,
+segs = py_contour.contour( z,
                         x,
                         y,
                         levels,
@@ -61,7 +61,7 @@ im.save("example_segments.png")
 polygons = {}
 for level, segments in segs.items():
     print "level", level
-    polygons[level] = contour.sort_segments(segments)
+    polygons[level] = py_contour.sort_segments(segments)
 
 print polygons
 

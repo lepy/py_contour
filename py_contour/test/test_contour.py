@@ -4,7 +4,7 @@
 
 import numpy as np
 import pytest
-import contour
+import py_contour
 import random
 
 def test_basic():
@@ -12,7 +12,7 @@ def test_basic():
     x = range(3)
     y = range(4)
     z = np.arange(12).reshape((3,4))
-    segs = contour.contour(z,x,y,[2,3])
+    segs = py_contour.contour(z,x,y,[2,3])
 
 def test_mismatched_dims():
     """ x and y need to be the right size """
@@ -20,7 +20,7 @@ def test_mismatched_dims():
     y = range(4)
     z = np.arange(12).reshape((3,4))
     with pytest.raises(ValueError):
-        segs = contour.contour(z,x,x,[2,3])
+        segs = py_contour.contour(z,x,x,[2,3])
 
 def test_sort_segments_triangle():
     """on triangle -- easiers option"""
@@ -29,7 +29,7 @@ def test_sort_segments_triangle():
             ((1,1),(0,2)),
             ((0,2),(0,0)),
             ]
-    polygons = contour.sort_segments(segs)
+    polygons = py_contour.sort_segments(segs)
     assert len(polygons) == 1
     assert polygons[0] == [(0, 2), (0, 0), (1, 1), (0, 2)]
 
@@ -65,7 +65,7 @@ def test_polyline():
     polyline = [(1, 0), (0, 1), (1, 3), (0, 4)]
     segs = merge_polys(polyline)
 
-    polygons = contour.sort_segments(segs)
+    polygons = py_contour.sort_segments(segs)
     for poly in polygons:
         print poly
     assert len(polygons) == 1
@@ -79,7 +79,7 @@ def test_sort_segments_two_polys():
 
     segs = merge_polys(poly1, poly2)
 
-    polygons = contour.sort_segments(segs)
+    polygons = py_contour.sort_segments(segs)
     for poly in polygons:
         print poly
     assert len(polygons) == 2
@@ -95,7 +95,7 @@ def test_sort_segments_polygon_polyline():
 
     segs = merge_polys(poly1, poly2, polyline)
 
-    polygons = contour.sort_segments(segs)
+    polygons = py_contour.sort_segments(segs)
     print "Polygons:"
     for poly in polygons:
         print poly
@@ -117,7 +117,7 @@ def test_touching_polys():
 
     segs = merge_polys(poly1, poly2)
     
-    polygons = contour.sort_segments(segs)
+    polygons = py_contour.sort_segments(segs)
     print "Polygons:"
     for poly in polygons:
         print poly
