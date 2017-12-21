@@ -54,11 +54,10 @@ fig = plt.figure()
 ax = fig.gca(projection='3d')
 
 for level, polys in polygons.items():
-    print "level", level
     for p in polys:
         df = pd.DataFrame(p, columns=["x", "y"])
         df["z"] = level
-        print df.head()
         plt.plot(df.x, df.y, df.z)
 
+plt.savefig("contour.png")
 plt.show()
