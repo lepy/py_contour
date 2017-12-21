@@ -1,4 +1,4 @@
-#py_contour
+# py_contour
 
 Computing contour polygons from data on a rectangular grid.
 
@@ -61,7 +61,6 @@ Or run the installed tests with::
 # simple test code for contour
 import numpy as np
 import py_contour
-# import py_gd # so we can see the results visually
 
 M, N = 1000, 800 #(image size)
 # create an array:
@@ -116,11 +115,9 @@ fig = plt.figure()
 ax = fig.gca(projection='3d')
 
 for level, polys in polygons.items():
-    print "level", level
     for p in polys:
         df = pd.DataFrame(p, columns=["x", "y"])
         df["z"] = level
-        print df.head()
         plt.plot(df.x, df.y, df.z)
 
 plt.show()

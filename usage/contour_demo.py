@@ -4,7 +4,6 @@
 
 import numpy as np
 import py_contour
-# import py_gd # so we can see the results visually
 
 M, N = 1000, 800 #(image size)
 # create an array:
@@ -19,11 +18,7 @@ z = np.cos(x) + np.sin(y)
 levels = np.linspace(z.min(),z.max(), 12)
 levels = levels[1:-1]
 print levels
-segs = py_contour.contour( z,
-                        x,
-                        y,
-                        levels,
-                       )
+segs = py_contour.contour( z, x, y, levels)
 
 scale_factor = np.array((M / (x.max() - x.min()), N / (y.max() - y.min()) ))
 shift = np.array ( (x.min(), y.min()) )
