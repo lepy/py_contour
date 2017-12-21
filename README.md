@@ -123,3 +123,4 @@ for level, polys in polygons.items():
 plt.show()
 ```
 
+![contour](usage/contour.png)
